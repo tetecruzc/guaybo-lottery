@@ -98,7 +98,7 @@ function App() {
   };
 
   const useLastFile = () => {
-    parseData('/sorteo.csv');
+    parseData(import.meta.env.BASE_URL + 'sorteo.csv');
   };
 
   const spinRoulette = () => {
