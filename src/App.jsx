@@ -109,10 +109,15 @@ function App() {
     const fixedSpinDuration = 10000; // Siempre dura 10 segundos fijos
     setSpinDuration(fixedSpinDuration);
 
-    // Seleccionamos un ganador aleatorio
-    const minSpins = participants.length - 20;
-    const maxSpins = participants.length - 5;
-    const newTargetIndex = Math.floor(Math.random() * (maxSpins - minSpins + 1)) + minSpins;
+    // Calculamos el número real de participantes (dividimos entre 40 que fueron las veces que repetimos la lista)
+    const originalLength = participants.length / 40;
+    
+    // Elegimos un ganador de forma 100% aleatoria e imparcial
+    const randomWinnerIndex = Math.floor(Math.random() * originalLength);
+    
+    // Lo ubicamos en el bloque número 38 (casi al final) para que la ruleta gire bastante
+    const targetBlock = 38; 
+    const newTargetIndex = (targetBlock * originalLength) + randomWinnerIndex;
     
     setTargetIndex(newTargetIndex);
     
