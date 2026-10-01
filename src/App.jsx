@@ -56,20 +56,14 @@ function App() {
         const validParticipants = [];
         
         data.forEach(row => {
-          const commentStr = row.comment || row.text || '';
-          const comment = commentStr.toLowerCase();
           const username = row.username;
           
           if (!username) return;
 
-          const mentions = (comment.match(/@/g) || []).length;
-          
-          if (comment.includes('yo quiero') && mentions >= 3) {
-            validParticipants.push({
-              username: `@${username}`,
-              avatar: row.avatar_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`
-            });
-          }
+          validParticipants.push({
+            username: `@${username}`,
+            avatar: row.avatar_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`
+          });
         });
 
         if (validParticipants.length < 5) {
